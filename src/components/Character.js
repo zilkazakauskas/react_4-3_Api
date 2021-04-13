@@ -5,7 +5,7 @@ const Character = ({ match }) => {
     // console.log(match);
 
     const [character, setItem] = useState([]);
-// console.log(character);
+    // console.log(character);
     useEffect(() => {
         fetchItem();
     }, [])
@@ -18,32 +18,26 @@ const Character = ({ match }) => {
         setItem(...result.data);
     }
 
-    // function 
-    // for (let index = 0; index < character.appearance['length']; index++) {
-    //     let tekstas= tekstas.push(index);
-        
-    // }
-    
+
     return (
         <div className="row">
-        
+
             <div className="col-6">
                 <p>
-                    <img src={character.img} alt="image" />
+                    <img src={character.img} height="700" alt={character.name} />
                 </p>
             </div>
             <div className="col-6">
-            <h1 className="mb-4">Name: {character.name}</h1>
-            <hr></hr>
+                <h1 className="mb-4">Name: {character.name}</h1>
+                <hr></hr>
                 <h3>Birthday: {character.birthday}</h3>
                 <hr></hr>
-
-                {console.log(character)}
-                
-                {/* <h3>Occupation: {character.occupation.map(item => {
-                    // return item + ', ';
-                    console.log(item);
-                } ) }</h3> */}
+                <h3>Occupation: {(character.occupation ?? []).map((item, index) => {
+                    if (character.occupation.length - 1 == index) {
+                        return item;
+                    }
+                    return item + ", ";
+                })}</h3>
 
                 <hr></hr>
                 <h3>Status: {character.status}</h3>
